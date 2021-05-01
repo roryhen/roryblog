@@ -1,10 +1,10 @@
 :root {
-  --red: #C5004A;
-  --darkred: #7F0036;
+  --red: #c5004a;
+  --darkred: #7f0036;
   --lightgray: #e0e0e0;
-  --gray: #C0C0C0;
+  --gray: #c0c0c0;
   --darkgray: #333;
-  --navy: #17050F;
+  --navy: #17050f;
   --white: #fff;
   --blue: hsl(212, 80%, 20%);
   --darkblue: hsl(212, 80%, 10%);
@@ -14,6 +14,7 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 html,
@@ -25,46 +26,12 @@ body {
   background-color: var(--lightgreen);
 }
 
-p:last-child {
-  margin-bottom: 0;
-}
-
-p,
-.tmpl-post li,
-img {
-  max-width: 37.5em;
-  /* 600px /16 */
-}
-
-p,
-.tmpl-post li {
-  line-height: 1.45;
-}
-
 a[href] {
   color: var(--blue);
 }
 
 a[href]:visited {
   color: var(--darkblue);
-}
-
-main {
-  padding: 1rem;
-}
-
-main :first-child {
-  margin-top: 0;
-}
-
-header {
-  border-bottom: 1px dashed var(--lightgray);
-}
-
-header::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 table {
@@ -78,7 +45,10 @@ table th {
 
 pre,
 code {
-  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono",
+    "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L",
+    "Courier New", Courier, monospace;
   line-height: 1.5;
 }
 
@@ -98,72 +68,71 @@ pre {
   -ms-hyphens: none;
   hyphens: none;
   padding: 1em;
-  margin: .5em 0;
+  margin: 0.5em 0;
   background-color: #f6f6f6;
 }
 
-.highlight-line {
-  display: block;
-  padding: 0.125em 1em;
-  text-decoration: none;
-  /* override del, ins, mark defaults */
-  color: inherit;
-  /* override del, ins, mark defaults */
-}
-
-/* allow highlighting empty lines */
-.highlight-line:empty::before {
-  content: " ";
-}
-
-/* avoid double line breaks when using display: block; */
-.highlight-line+br {
-  display: none;
-}
-
-.highlight-line-isdir {
-  color: #b0b0b0;
-  background-color: #222;
-}
-
-.highlight-line-active {
-  background-color: #444;
-  background-color: hsla(0, 0%, 27%, .8);
-}
-
-.highlight-line-add {
-  background-color: #45844b;
-}
-
-.highlight-line-remove {
-  background-color: #902f2f;
+body {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 /* Header */
-.home {
-  padding: 0 1rem;
-  float: left;
-  margin: 1rem 0;
-  /* 16px /16 */
-  font-size: 1em;
-  /* 16px /16 */
+header {
+  display: flex;
+  flex-flow: column;
+  gap: 1em;
+  flex: 1 0 150px;
+  padding: 2em;
+  box-shadow: 0 0 0.5em rgb(0 5 0 / 10%), 0.2em 0 10em rgb(0 5 0 / 15%);
+  clip-path: polygon(1% 0%, 200% 0%, 200% 200%, 1% 200%);
 }
 
-.home :link:not(:hover) {
+.home {
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.home :hover :not(.logo, .emoji) {
+  text-decoration: underline;
+}
+
+.home a {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   text-decoration: none;
+}
+
+.home .logo {
+  font-size: 3.5rem;
+}
+
+.home .emoji {
+  font-size: 4rem;
+  vertical-align: middle;
 }
 
 /* Nav */
 .nav {
   padding: 0;
   list-style: none;
-  float: left;
-  margin-left: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1em;
 }
 
-.nav-item {
-  display: inline-block;
-  margin-right: 1em;
+@media (min-width: 500px) {
+  .home a {
+    align-items: flex-end;
+  }
+  .nav {
+    flex-flow: column;
+    align-items: flex-end;
+  }
 }
 
 .nav-item a[href]:not(:hover) {
@@ -173,6 +142,12 @@ pre {
 .nav-item-active {
   font-weight: 700;
   text-decoration: underline;
+}
+
+/* Main content */
+.tmpl-home {
+  flex: 2 0 200px;
+  padding: 2em 2em 0;
 }
 
 /* Posts list */
@@ -188,7 +163,7 @@ pre {
 .postlist-item:before {
   display: inline-block;
   pointer-events: none;
-  content: ""counter(start-from, decimal-leading-zero) ". ";
+  content: "" counter(start-from, decimal-leading-zero) ". ";
   line-height: 100%;
   text-align: right;
 }
@@ -219,7 +194,6 @@ pre {
   /* 19px /16 */
   font-weight: 700;
 }
-
 
 /* Tags */
 .post-tag {
@@ -259,7 +233,7 @@ a[href].post-tag:visited {
   font-family: sans-serif;
   text-decoration: none;
   font-style: normal;
-  margin-left: .1em;
+  margin-left: 0.1em;
 }
 
 a[href].direct-link,
@@ -269,7 +243,7 @@ a[href].direct-link:visited {
 
 a[href].direct-link:focus,
 a[href].direct-link:focus:visited,
-:hover>a[href].direct-link,
-:hover>a[href].direct-link:visited {
+:hover > a[href].direct-link,
+:hover > a[href].direct-link:visited {
   color: #aaa;
 }
