@@ -7,6 +7,7 @@ tags:
   - web-development
 layout: layouts/post.njk
 ---
+
 My start with building things on the web dates back to when I was in high school taking an elective on computer graphics and a component of that class was building a website.
 
 I also was into online gaming and had helped build a website for a group I played with for fun. I also experimented with building a couple other websites around that time. We used Adobe Dreamweaver in my high school class but for my other websites I hand coded them. I remember my fascination with writing out the markup as a text document and having it translate into this rich visual layout. It seemed like magic.

@@ -4,12 +4,9 @@
   --lightgray: #e0e0e0;
   --gray: #c0c0c0;
   --darkgray: #333;
-  --navy: #17050f;
   --white: #fff;
-  --blue: hsl(212, 80%, 20%);
+  --blue: hsl(212, 100%, 20%);
   --darkblue: hsl(212, 80%, 10%);
-  --darkgreen: hsl(146deg, 50%, 20%);
-  --lightgreen: hsl(146deg, 50%, 90%);
 }
 
 * {
@@ -22,8 +19,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: system-ui, sans-serif;
-  color: var(--darkgreen);
-  background-color: var(--lightgreen);
+  color: var(--darkgray);
+  background-color: var(--lightgray);
 }
 
 a[href] {
@@ -60,79 +57,60 @@ pre {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
   tab-size: 2;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
   hyphens: none;
   padding: 1em;
   margin: 0.5em 0;
   background-color: #f6f6f6;
 }
 
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--darkblue);
+}
+
 body {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
 /* Header */
 header {
-  display: flex;
-  flex-flow: column;
-  gap: 1em;
-  flex: 1 0 150px;
-  padding: 2em;
-  box-shadow: 0 0 0.5em rgb(0 5 0 / 10%), 0.2em 0 10em rgb(0 5 0 / 15%);
-  clip-path: polygon(1% 0%, 200% 0%, 200% 200%, 1% 200%);
+  display: grid;
+  gap: 1rem;
+  padding: 2em 1.5em;
+  box-shadow: 0 0 0.5em rgb(0 5 0 / 10%), 0 0 10em rgb(0 5 0 / 15%);
 }
 
-.home {
+h1 {
   font-size: 2rem;
-  white-space: nowrap;
+  text-align: center;
 }
 
-.home :hover :not(.logo, .emoji) {
-  text-decoration: underline;
-}
-
-.home a {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+h1 a {
+  display: grid;
+  justify-items: center;
   text-decoration: none;
 }
 
-.home .logo {
+.logo {
   font-size: 3.5rem;
 }
 
-.home .emoji {
-  font-size: 4rem;
-  vertical-align: middle;
-}
-
 /* Nav */
-.nav {
-  padding: 0;
-  list-style: none;
+nav ul {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  gap: 1em;
-}
-
-@media (min-width: 500px) {
-  .home a {
-    align-items: flex-end;
-  }
-  .nav {
-    flex-flow: column;
-    align-items: flex-end;
-  }
+  gap: 2em;
 }
 
 .nav-item a[href]:not(:hover) {
@@ -144,71 +122,65 @@ header {
   text-decoration: underline;
 }
 
-/* Main content */
-.tmpl-home {
-  flex: 2 0 200px;
-  padding: 2em 2em 0;
+/* Main */
+main {
+  padding: 4em 1.5em;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: minmax(min-content, 30rem);
+  grid-auto-rows: min-content;
+  gap: 1em;
 }
+
+/* Footer */
 
 /* Posts list */
 .postlist {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 2em;
 }
 
 .postlist-item {
-  counter-increment: start-from -1;
-}
-
-.postlist-item:before {
-  display: inline-block;
-  pointer-events: none;
-  content: "" counter(start-from, decimal-leading-zero) ". ";
-  line-height: 100%;
-  text-align: right;
-}
-
-.postlist-date,
-.postlist-item:before {
-  font-size: 0.8125em;
-  /* 13px /16 */
-  color: var(--darkgray);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.7em;
 }
 
 .postlist-date {
-  word-spacing: -0.5px;
-}
-
-.postlist-link {
-  display: inline-block;
-  padding: 0.25em 0.1875em;
-  /* 4px 3px /16 */
+  font-size: 0.8rem;
+  color: var(--darkgray);
+  word-spacing: -0.1em;
 }
 
 .postlist-item-active .postlist-link {
   font-weight: bold;
 }
 
-.tmpl-home .postlist-link {
-  font-size: 1.1875em;
-  /* 19px /16 */
+.home .postlist-link {
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
 /* Tags */
+.post-tags {
+  flex: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .post-tag {
-  display: inline-block;
-  vertical-align: text-top;
   text-transform: uppercase;
-  font-size: 0.625em;
-  /* 10px /16 */
-  padding: 2px 4px;
-  margin-left: 0.8em;
-  /* 8px /10 */
-  background-color: var(--red);
+  font-size: 0.6em;
+  padding: 0.2em 0.4em;
+  background-color: var(--blue);
   color: var(--white);
   border-radius: 0.25em;
-  /* 3px /12 */
   text-decoration: none;
 }
 
@@ -221,7 +193,6 @@ a[href].post-tag:visited {
 .warning {
   background-color: #ffc;
   padding: 1em 0.625em;
-  /* 16px 10px /16 */
 }
 
 .warning ol:only-child {
